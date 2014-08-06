@@ -71,7 +71,7 @@ public class ToastUtil extends BaseThread {
 		}
 	}
 
-	private Handler mHandler = new Handler(Looper.getMainLooper()) {
+	private Handler mHandler = new Handler() {
 
 		public void handleMessage(android.os.Message msg) {
 			int what = msg.what;
@@ -88,7 +88,7 @@ public class ToastUtil extends BaseThread {
 			case FLAG_CLEAR:
 				showMsg("操作异常，消息太多");
 				break;
-
+				
 			default:
 				break;
 			}
@@ -150,17 +150,23 @@ public class ToastUtil extends BaseThread {
 				exitToast();
 				return;
 			}
-
-			Message msg = mHandler.obtainMessage();
-			if (null == msg) {
-				msg = new Message();
-			}
-			msg.what = FLAG_SHOW;
-			msg.obj = msgStr;
-			mHandler.sendMessage(msg);
+//			if(mHandler.getLooper() == Looper.getMainLooper()){
+//				System.out.println("main");
+//			}else{
+//				System.out.println("main not");
+//			}
+//			Message msg = mHandler.obtainMessage();
+//			if (null == msg) {
+//				msg = new Message();
+//			}
+//			msg.what = FLAG_SHOW;
+//			msg.obj = msgStr;
+//			mHandler.sendMessage(msg);
+			showMsg(msgStr);
 
 			Thread.sleep(SHOW_TIME);
 
+//			hideMsg();
 			if (mMsgQueue.size() == 0) {
 				mHandler.sendEmptyMessage(FLAG_HIDE);
 			}
