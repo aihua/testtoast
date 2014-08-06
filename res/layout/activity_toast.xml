@@ -32,6 +32,13 @@
             android:layout_height="wrap_content"
             android:onClick="onClick"
             android:text="three" />
+        
+        <Button
+            android:id="@+id/btFour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="Four" />
     </LinearLayout>
 
 </RelativeLayout>
